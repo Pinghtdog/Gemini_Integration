@@ -33,7 +33,6 @@ public class HelloController {
     @FXML
     private TextArea resultArea;
 
-    // This method is called when the button defined in FXML with onAction="#handleSubmitButtonAction" is clicked
     @FXML
     public void handleSubmitButtonAction(ActionEvent event) {
         String prompt = promptInput.getText();
@@ -67,42 +66,6 @@ public class HelloController {
         // Start the task on a new thread
         new Thread(geminiTask).start();
     }
-
-    // --- Placeholder for the background task ---
-    // We will implement the actual API call logic inside this task
-//    private Task<String> createGeminiApiTask(String prompt) {
-//        return new Task<>() {
-//            @Override
-//            protected String call() throws Exception {
-//                // --- Get the NEW, SECURE API Key ---
-//                // IMPORTANT: Load securely (e.g., environment variable)
-//                // Do NOT hardcode it here!
-//                String apiKey = System.getenv("MY_TEST_GEMINI_API_KEY");
-//                if (apiKey == null || apiKey.trim().isEmpty()) {
-//                    throw new RuntimeException("API Key not found. Set MY_TEST_GEMINI_API_KEY environment variable.");
-//                }
-//
-//                // --- Placeholder for actual API Call Logic ---
-//                // Replace this section with the HttpClient code from the previous example
-//                updateMessage("Calling Gemini API..."); // Optional status update
-//                System.out.println("Simulating API call for prompt: " + prompt);
-//                Thread.sleep(2000); // Simulate network delay
-//
-//                // Simulate success response for now
-//                String simulatedResponse = "Gemini Response:\n1. Yogurt with berries.\n2. Apple slices with peanut butter.\n3. Handful of almonds.";
-//                // String actualResponse = callGeminiApi(prompt, apiKey); // Call your real API method
-//
-//                updateMessage("Processing response..."); // Optional status update
-//                Thread.sleep(500);
-//
-//                // return actualResponse;
-//                return simulatedResponse; // Return simulated response for now
-//
-//                // Simulate error for testing:
-//                // throw new RuntimeException("Simulated API Error: Rate limit exceeded");
-//            }
-//        };
-//    }
 
     public void handleSubmitButtonAction(javafx.event.ActionEvent actionEvent) {
         String prompt = promptInput.getText();
@@ -151,29 +114,22 @@ public class HelloController {
 
                 // --- Placeholder for actual API Call Logic ---
                 // Replace this section with the HttpClient code from the previous example
-                updateMessage("Calling Gemini API..."); // Optional status update
+                updateMessage("Calling Gemini API..."); // status update
                 System.out.println("Simulating API call for prompt: " + prompt);
-                Thread.sleep(2000); // Simulate network delay
 
-                // Simulate success response for now
-//                String simulatedResponse = "Gemini Response:\n1. Yogurt with berries.\n2. Apple slices with peanut butter.\n3. Handful of almonds.";
-                 String actualResponse = callGeminiApi(prompt, apiKey); // Call your real API method
+               String Response = callGeminiApi(prompt, apiKey); // Call API method
 
-                updateMessage("Processing response..."); // Optional status update
+                updateMessage("Processing response..."); // status update
                 Thread.sleep(500);
 
-                // return actualResponse;
-                return actualResponse; // Return simulated response for now
+                return Response; // Return response
 
                 // Simulate error for testing:
-                // throw new RuntimeException("Simulated API Error: Rate limit exceeded");
+//                 throw new RuntimeException("Simulated API Error: Rate limit exceeded");
             }
         };
     }
 
-//
-//    public void handleSubmitButtonAction(javafx.event.ActionEvent actionEvent) {
-//    }
 
     // --- Method for the actual API call would go here (using HttpClient) ---
      private String callGeminiApi(String prompt, String apiKey) throws Exception {
